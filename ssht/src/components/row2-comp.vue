@@ -262,13 +262,13 @@ export default {
       }
       &:after {
         content: "";
-        width: 5px;
-        height: 5px;
+        width: 6px;
+        height: 6px;
         background: #444dc7;
         position: absolute;
         bottom: -2px;
         right: 0;
-        border-radius: 5px;
+        border-radius: 50%;
       }
       i {
         width: 6px;

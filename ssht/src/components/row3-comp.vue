@@ -66,7 +66,7 @@ export default {
 .row-comp {
   display: flex;
   align-items: stretch;
-  height: 300px;
+  height: 320px;
   justify-content: space-between;
   padding: 0 28px;
 }
@@ -243,7 +243,7 @@ export default {
   width: 720px;
   background: url("../assets/img/img11.png") no-repeat center;
   background-size: 100% 100%;
-  padding: 60px 40px 30px 30px;
+  padding: 50px 40px 30px 30px;
   position: relative;
   .title {
     position: absolute;
@@ -260,7 +260,9 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100px;
+    height: 120px;
+    padding: 10px;
+    border: 1px dashed #171a46;
     & + .c-item {
       margin-top: 12px;
     }
