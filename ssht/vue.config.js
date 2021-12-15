@@ -1,20 +1,20 @@
-const path = require('path');
+const path = require("path");
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, dir);
 }
 // console.log({ env });
 module.exports = {
+  transpileDependencies: ["vue-echarts", "resize-detector"],
   configureWebpack: {
     plugins: [
       // new HardSourceWebpackPlugin()
-    ]
+    ],
   },
   chainWebpack: (config) => {
-    config.resolve.alias.set('@$', resolve('src'));
+    config.resolve.alias.set("@$", resolve("src"));
   },
-  pluginOptions: {
-  },
+  pluginOptions: {},
 
   // devServer: {
   //   disableHostCheck: true,
@@ -29,9 +29,9 @@ module.exports = {
   //     }
   //   }
   // },
-  publicPath:  '/',
-  outputDir: 'dist',
+  publicPath: "/",
+  outputDir: "dist",
   productionSourceMap: false,
   lintOnSave: false,
-  assetsDir: 'static'
+  assetsDir: "static",
 };

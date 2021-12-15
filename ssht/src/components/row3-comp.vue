@@ -27,10 +27,11 @@
     </div>
     <div class="item2">
       <div class="title">月办件量走势</div>
+      <div class="chart1" ref="chart1"></div>
     </div>
     <div class="item3">
       <div class="title">审批事项</div>
-      <div class="c-item" v-for="item in 2" :key="2">
+      <div class="c-item" v-for="item in 2" :key="item">
         <div class="i-title">城管综治办</div>
         <div class="text">
           1、这里是文字内容，审批事项的内容是文字内容，审批事项！<br />
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+import * as echarts from "echarts";
 export default {
   name: "row3Comp",
   props: {},
@@ -52,10 +54,81 @@ export default {
     return {};
   },
   computed: {},
-  methods: {},
+  methods: {
+    showChart() {
+      let chart1 = echarts.init(this.$refs.chart1);
+      let option = {
+        xAxis: {
+          type: "category",
+          data: [
+            "一月",
+            "二月",
+            "三月",
+            "四月",
+            "五月",
+            "六月",
+            "七月",
+            "八月",
+            "九月",
+            "十月",
+            "十一月",
+            "十二月",
+          ],
+        },
+        yAxis: {
+          type: "value",
+        },
+        legendHoverLink: false,
+        labelLine: {
+          show: true,
+          lineStyle: {
+            width: 4,
+          },
+        },
+        legend: { type: "plain", top: "5%", data: ["今年", "去年"] },
+        grid: {
+          show: true,
+          top: "5%",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          containLabel: true,
+        },
+        series: [
+          {
+            name: "今年",
+            data: [120, 200, 150, 80, 70, 110, 130],
+            type: "bar",
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#1ACAD9" },
+                { offset: 0.7, color: "rgba(26, 202, 217, .8)" },
+                { offset: 1, color: "transparent" },
+              ]),
+            },
+          },
+          {
+            name: "去年",
+            data: [100, 150, 200, 50, 100, 110, 130],
+            type: "bar",
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#157EFB" },
+                { offset: 0.7, color: "rgba(21, 126, 251, .9)" },
+                { offset: 1, color: "transparent" },
+              ]),
+            },
+          },
+        ],
+      };
+      chart1.setOption(option);
+    },
+  },
   watch: {},
   created() {},
-  mounted() {},
+  mounted() {
+    this.showChart();
+  },
   updated() {},
   beforeDestroy() {},
   destroyed() {},
@@ -285,5 +358,9 @@ export default {
       color: #fff;
     }
   }
+}
+.chart1 {
+  width: 100%;
+  height: 230px;
 }
 </style>
