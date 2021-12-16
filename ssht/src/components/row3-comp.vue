@@ -3,26 +3,12 @@
     <div class="item1">
       <div class="title">热门服务事项</div>
       <div class="content">
-        <div class="row row1">
-          <div>市场准入科</div>
-          <span>9</span>
-        </div>
-        <div class="row row2">
-          <div>市场准入科</div>
-          <span>9</span>
-        </div>
-        <div class="row row3">
-          <div>市场准入科</div>
-          <span>9</span>
-        </div>
-        <div class="row row4">
-          <div>市场准入科</div>
-          <span>9</span>
-        </div>
-        <div class="row row5">
-          <div>市场准入科</div>
-          <span>9</span>
-        </div>
+        <template v-for="(item, index) in statsList">
+          <div :class="['row', 'row' + (index + 1)]" :key="index">
+            <div>{{ item.ServiceName }}</div>
+            <span>{{ item.Amount }}</span>
+          </div>
+        </template>
       </div>
     </div>
     <div class="item2">
@@ -46,16 +32,25 @@
 
 <script>
 import * as echarts from "echarts";
+import {
+  apiGetServiceStatsList,
+  apiGetMonthServiceStatsList,
+  apiGetApprovalItemsList,
+} from "@/api/api";
 export default {
   name: "row3Comp",
   props: {},
   components: {},
   data() {
-    return {};
+    return {
+      statsList: [],
+      monthList: [],
+      itemsList: [],
+    };
   },
   computed: {},
   methods: {
-    showChart() {
+    showChart(data1, data2) {
       let chart1 = echarts.init(this.$refs.chart1);
       let option = {
         yAxis: {
@@ -161,7 +156,7 @@ export default {
         series: [
           {
             name: "今年",
-            data: [120, 200, 150, 80, 70, 110, 130],
+            data: data2,
             type: "bar",
             barWidth: 10,
             itemStyle: {
@@ -174,7 +169,7 @@ export default {
           },
           {
             name: "去年",
-            data: [80, 150, 200, 50, 100, 110, 130],
+            data: data1,
             type: "bar",
             barWidth: 10,
             itemStyle: {
@@ -189,11 +184,38 @@ export default {
       };
       chart1.setOption(option);
     },
+    getServiceStatsList() {
+      apiGetServiceStatsList().then((res) => {
+        this.statsList = res.data;
+      });
+    },
+    getMonthServiceStatsList() {
+      apiGetMonthServiceStatsList().then((res) => {
+        this.monthList = res.data;
+        let data1 = [];
+        let data2 = [];
+        this.monthList.forEach((item) => {
+          if (item.Name.includes("2020")) {
+            data1.push(item.Amount);
+          } else {
+            data2.push(item.Amount);
+          }
+        });
+        this.showChart(data1, data2);
+      });
+    },
+    getApprovalItemsList() {
+      apiGetApprovalItemsList().then((res) => {
+        this.itemsList = res.data;
+      });
+    },
   },
   watch: {},
   created() {},
   mounted() {
-    this.showChart();
+    this.getServiceStatsList();
+    this.getMonthServiceStatsList();
+    this.getApprovalItemsList();
   },
   updated() {},
   beforeDestroy() {},

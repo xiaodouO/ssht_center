@@ -1,6 +1,6 @@
 import axios from "axios";
 const service = axios.create({
-  baseURL: "//223.112.126.90:8005/",
+  baseURL: "//223.112.126.90:8005/QmsApi/",
   timeout: 60 * 1000 * 5,
   headers: {
     // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -8,8 +8,6 @@ const service = axios.create({
   },
 });
 const err = (error) => {
-  if (error.message.includes("timeout")) {
-  }
   return Promise.reject(error);
 };
 
@@ -23,7 +21,7 @@ service.interceptors.request.use((config) => {
 service.interceptors.response.use((response) => {
   // console.log('response----->', response);
   let res = response.data;
-  if (res.code === 0) {
+  if (res.result) {
     return res;
   } else {
     return Promise.reject(res);

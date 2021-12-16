@@ -2,10 +2,28 @@
   <div class="head-container">
     <div class="title">狮山横塘街道为民服务中心实时运行信息</div>
     <div class="r-wrapper">
-      <span class="time">12:12:12</span>
+      <span class="time"
+        >{{ dateTime.getHours() }}:{{
+          dateTime.getMinutes() >= 10
+            ? dateTime.getMinutes()
+            : "0" + dateTime.getMinutes()
+        }}:{{
+          dateTime.getSeconds() >= 10
+            ? dateTime.getSeconds()
+            : "0" + dateTime.getSeconds()
+        }}</span
+      >
       <span class="date">
-        2020/12/06<br />
-        星期三
+        {{ dateTime.getFullYear() }}/{{
+          dateTime.getMonth() >= 9
+            ? dateTime.getMonth() + 1
+            : "0" + (dateTime.getMonth() + 1)
+        }}/{{
+          dateTime.getDate() >= 10
+            ? dateTime.getDate()
+            : "0" + dateTime.getDate()
+        }}<br />
+        星期{{ weeks[dateTime.getDay()] }}
       </span>
       <span>9°C ~ 14°C</span>
     </div>
@@ -18,15 +36,25 @@ export default {
   props: {},
   components: {},
   data() {
-    return {};
+    return {
+      dateTime: new Date(),
+      weeks: ["日", "一", "二", "三", "四", "五", "六"],
+      timer: null,
+    };
   },
   computed: {},
   methods: {},
   watch: {},
   created() {},
-  mounted() {},
+  mounted() {
+    this.timer = setInterval(() => {
+      this.dateTime = new Date();
+    }, 1000);
+  },
   updated() {},
-  beforeDestroy() {},
+  beforeDestroy() {
+    clearInterval(this.timer);
+  },
   destroyed() {},
 };
 </script>
@@ -39,6 +67,7 @@ export default {
   background-size: 100% auto;
   position: relative;
 }
+
 .title {
   font-size: 54px;
   color: #fff;
@@ -46,8 +75,9 @@ export default {
   font-weight: bold;
   letter-spacing: -2px;
 }
+
 .r-wrapper {
-  width: 450px;
+  width: 430px;
   position: absolute;
   top: 0;
   right: 0;
@@ -57,8 +87,13 @@ export default {
   text-align: center;
   font-size: 18px;
   padding-bottom: 10px;
-  span {
-    padding-right: 30px;
+  .date {
+    margin-right: 20px;
+  }
+  .time {
+    display: block;
+    width: 90px;
+    text-align: left;
   }
 }
 </style>

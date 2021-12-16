@@ -5,20 +5,18 @@
         <div class="r-item">
           <div class="title">今日取号量</div>
           <div class="num-box">
-            <div class="num">1</div>
-            <div class="num">4</div>
-            <div class="num">2</div>
-            <div class="num">3</div>
+            <div class="num" v-for="(item, index) in TodayTicket" :key="index">
+              {{ item }}
+            </div>
             <div class="text">个</div>
           </div>
         </div>
         <div class="r-item">
-          <div class="title">今日板件量</div>
+          <div class="title">今日办件量</div>
           <div class="num-box">
-            <div class="num">1</div>
-            <div class="num">4</div>
-            <div class="num">2</div>
-            <div class="num">3</div>
+            <div class="num" v-for="(item, index) in TodayService" :key="index">
+              {{ item }}
+            </div>
             <div class="text">件</div>
           </div>
         </div>
@@ -26,31 +24,31 @@
       <div class="row2">
         <div>
           <span>本月取号量</span>
-          <span>12312312</span>
+          <span>{{ data1.MonthTicket }}</span>
         </div>
         <div>
           <span>本年取号量</span>
-          <span>12312312</span>
+          <span>{{ data1.YearTicket }}</span>
         </div>
         <div>
           <span>本月办件量</span>
-          <span>12312312</span>
+          <span>{{ data1.MonthService }}</span>
         </div>
         <div>
-          <span>本月办件量</span>
-          <span>3222</span>
+          <span>本年办件量</span>
+          <span>{{ data1.YearService }}</span>
         </div>
         <div>
           <span>日均办件量</span>
-          <span>123</span>
+          <span>{{ data1.DayAvgService }}</span>
         </div>
         <div>
           <span>正在办件量</span>
-          <span>2</span>
+          <span>{{ data1.WorkingService }}</span>
         </div>
         <div>
           <span>当前等待量</span>
-          <span>12</span>
+          <span>{{ data1.WaitingService }}</span>
         </div>
       </div>
     </div>
@@ -61,19 +59,19 @@
           <img src="./../assets/img/img7.png" alt="" />
           <div>审批服务</div>
           <i class="line"></i>
-          <span>2344个</span>
+          <span>{{ data2.ApprovalService }}个</span>
         </div>
         <div class="l-item">
           <img src="../assets/img/img2.png" alt="" />
           <div>开设窗口</div>
           <i class="line"></i>
-          <span>2344个</span>
+          <span>{{ data2.Counter }}个</span>
         </div>
         <div class="l-item">
           <img src="../assets/img/img19.png" alt="" />
           <div>办事人数</div>
           <i class="line"></i>
-          <span>2344个</span>
+          <span>{{ data2.TotalPeople }}个</span>
         </div>
       </div>
       <div class="r-wrapper">
@@ -83,7 +81,7 @@
             窗口平均等待时间
           </div>
           <div class="line"></div>
-          <div class="r-num">9<span>分钟</span></div>
+          <div class="r-num">{{ data2.AvgWaitingTime }}<span>分钟</span></div>
         </div>
         <div class="r-item">
           <div class="r-t">
@@ -91,7 +89,7 @@
             窗口平均等待人数
           </div>
           <div class="line"></div>
-          <div class="r-num">9<span>人次</span></div>
+          <div class="r-num">{{ data2.AvgWaitingPeople }}<span>人次</span></div>
         </div>
         <div class="r-item">
           <div class="r-t">
@@ -99,7 +97,7 @@
             24小时自助服务
           </div>
           <div class="line"></div>
-          <div class="r-num">9<span>件</span></div>
+          <div class="r-num">{{ data2.SelfService }}<span>件</span></div>
         </div>
       </div>
     </div>
@@ -107,7 +105,7 @@
 </template>
 
 <script>
-import { apiGetTotalTicketAndService } from "@/api/api";
+import { apiGetRealtimeInfo, apiGetTotalTicketAndService } from "@/api/api";
 
 export default {
   name: "row1Comp",
@@ -116,19 +114,30 @@ export default {
   data() {
     return {
       data1: {},
+      TodayService: "",
+      TodayTicket: "",
+      data2: {},
     };
   },
   computed: {},
   methods: {
-    getetTotalTicketAndService() {
+    getTotalTicketAndService() {
       apiGetTotalTicketAndService().then((res) => {
         this.data1 = res.data;
+        this.TodayService = this.data1.TodayService.toString();
+        this.TodayTicket = this.data1.TodayTicket.toString();
+      });
+    },
+    getRealtimeInfo() {
+      apiGetRealtimeInfo().then((res) => {
+        this.data2 = res.data;
       });
     },
   },
   watch: {},
   created() {
-    this.getetTotalTicketAndService();
+    this.getTotalTicketAndService();
+    this.getRealtimeInfo();
   },
   mounted() {},
   updated() {},
