@@ -1,6 +1,6 @@
 import axios from "axios";
 const service = axios.create({
-  baseURL: "//223.112.126.90:8005/QmsApi/",
+  baseURL: "http://223.112.126.90:8005/QmsApi/",
   timeout: 60 * 1000 * 5,
   headers: {
     // 'Content-Type': 'application/x-www-form-urlencoded',
