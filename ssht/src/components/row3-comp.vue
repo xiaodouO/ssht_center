@@ -58,6 +58,25 @@ export default {
     showChart() {
       let chart1 = echarts.init(this.$refs.chart1);
       let option = {
+        yAxis: {
+          type: "value",
+          axisTick: { show: false },
+          axisLine: {
+            show: false,
+            lineStyle: {
+              color: "#202568",
+            },
+          },
+          axisLabel: {
+            color: "#202568",
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: "#202568",
+            },
+          },
+        },
         xAxis: {
           type: "category",
           data: [
@@ -74,9 +93,26 @@ export default {
             "十一月",
             "十二月",
           ],
-        },
-        yAxis: {
-          type: "value",
+          axisTick: { show: false },
+          axisLabel: {
+            color: "#202568",
+            fontSize: 14,
+            lineHeight: 20,
+            align: "center",
+            interval: 0,
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: "#202568",
+            },
+          },
+          axisLine: {
+            show: false,
+            lineStyle: {
+              color: "#202568",
+            },
+          },
         },
         legendHoverLink: false,
         labelLine: {
@@ -85,20 +121,49 @@ export default {
             width: 4,
           },
         },
-        legend: { type: "plain", top: "5%", data: ["今年", "去年"] },
+        legend: {
+          type: "plain",
+          top: 0,
+          right: 50,
+          itemWidth: 20,
+          itemHeight: 8,
+          data: [
+            {
+              name: "今年",
+              itemStyle: {
+                color: "#1ACAD9",
+              },
+              textStyle: {
+                color: "#fff",
+              },
+            },
+            {
+              name: "去年",
+              itemStyle: {
+                color: "#157EFB",
+              },
+              textStyle: {
+                color: "#fff",
+              },
+            },
+          ],
+        },
         grid: {
-          show: true,
-          top: "5%",
+          top: "15%",
           left: 0,
           right: 0,
           bottom: 0,
           containLabel: true,
+          show: true,
+          borderWidth: 1,
+          borderColor: "#1F3057",
         },
         series: [
           {
             name: "今年",
             data: [120, 200, 150, 80, 70, 110, 130],
             type: "bar",
+            barWidth: 10,
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 { offset: 0, color: "#1ACAD9" },
@@ -109,8 +174,9 @@ export default {
           },
           {
             name: "去年",
-            data: [100, 150, 200, 50, 100, 110, 130],
+            data: [80, 150, 200, 50, 100, 110, 130],
             type: "bar",
+            barWidth: 10,
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 { offset: 0, color: "#157EFB" },
@@ -145,18 +211,20 @@ export default {
 }
 .item1 {
   width: 370px;
-  background: url("../assets/img/img11.png") no-repeat center;
+  background: url("../assets/img/img24.png") no-repeat center;
   background-size: 100% 100%;
   padding: 30px 40px 30px 30px;
   position: relative;
   .title {
     position: absolute;
-    top: 10px;
-    left: 9px;
+    top: 7px;
+    left: 7px;
     color: #cff8ff;
     font-size: 20px;
-    background: #000;
+    background: url("../assets/img/img23.png") no-repeat center;
+    background-size: 100% 100%;
     height: 40px;
+    width: 180px;
     padding: 0 20px;
     line-height: 40px;
   }
@@ -222,7 +290,7 @@ export default {
 }
 .item2 {
   width: 720px;
-  background: url("../assets/img/img11.png") no-repeat center;
+  background: url("../assets/img/img26.png") no-repeat center;
   background-size: 100% 100%;
   padding: 60px 40px 30px 30px;
   position: relative;
@@ -230,12 +298,14 @@ export default {
   justify-content: space-between;
   .title {
     position: absolute;
-    top: 10px;
-    left: 9px;
+    top: 6px;
+    left: 7px;
     color: #cff8ff;
     font-size: 20px;
-    background: #000;
+    background: url("../assets/img/img23.png") no-repeat center;
+    background-size: 100% 100%;
     height: 40px;
+    width: 180px;
     padding: 0 20px;
     line-height: 40px;
   }
@@ -314,18 +384,20 @@ export default {
 }
 .item3 {
   width: 720px;
-  background: url("../assets/img/img11.png") no-repeat center;
+  background: url("../assets/img/img25.png") no-repeat center;
   background-size: 100% 100%;
   padding: 50px 40px 30px 30px;
   position: relative;
   .title {
     position: absolute;
-    top: 10px;
-    left: 9px;
+    top: 5px;
+    left: 7px;
     color: #cff8ff;
     font-size: 20px;
-    background: #000;
+    background: url("../assets/img/img23.png") no-repeat center;
+    background-size: 100% 100%;
     height: 40px;
+    width: 180px;
     padding: 0 20px;
     line-height: 40px;
   }

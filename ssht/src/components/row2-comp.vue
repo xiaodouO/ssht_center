@@ -229,7 +229,7 @@ export default {
 }
 .item1 {
   width: 370px;
-  background: url("../assets/img/img11.png") no-repeat center;
+  background: url("../assets/img/img24.png") no-repeat center;
   background-size: 100% 100%;
   padding: 30px 40px 30px 30px;
   position: relative;
@@ -320,7 +320,7 @@ export default {
 }
 .item2 {
   width: 720px;
-  background: url("../assets/img/img11.png") no-repeat center;
+  background: url("../assets/img/img26.png") no-repeat center;
   background-size: 100% 100%;
   padding: 60px 40px 30px 30px;
   position: relative;
@@ -328,12 +328,14 @@ export default {
   justify-content: space-between;
   .title {
     position: absolute;
-    top: 10px;
-    left: 9px;
+    top: 6px;
+    left: 7px;
     color: #cff8ff;
     font-size: 20px;
-    background: #000;
+    background: url("../assets/img/img23.png") no-repeat center;
+    background-size: 100% 100%;
     height: 40px;
+    width: 180px;
     padding: 0 20px;
     line-height: 40px;
   }
@@ -416,9 +418,9 @@ export default {
 }
 .item3 {
   width: 720px;
-  background: url("../assets/img/img11.png") no-repeat center;
+  background: url("../assets/img/img25.png") no-repeat center;
   background-size: 100% 100%;
-  padding: 30px 40px 30px 30px;
+  padding: 25px 40px 30px 30px;
   position: relative;
   .title {
     position: absolute;
@@ -437,6 +439,7 @@ export default {
     border-right: 0;
     width: 100%;
     border-spacing: 0;
+    font-size: 17px;
     td,
     th {
       border: 1px solid #181f7c;
@@ -446,7 +449,9 @@ export default {
       text-align: center;
     }
     th {
-      background: #000;
+      background: #080a30;
+      color: #35e2ff;
+      font-size: 20px;
     }
   }
 }

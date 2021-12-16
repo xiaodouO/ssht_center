@@ -107,17 +107,29 @@
 </template>
 
 <script>
+import { apiGetTotalTicketAndService } from "@/api/api";
+
 export default {
   name: "row1Comp",
   props: {},
   components: {},
   data() {
-    return {};
+    return {
+      data1: {},
+    };
   },
   computed: {},
-  methods: {},
+  methods: {
+    getetTotalTicketAndService() {
+      apiGetTotalTicketAndService().then((res) => {
+        this.data1 = res.data;
+      });
+    },
+  },
   watch: {},
-  created() {},
+  created() {
+    this.getetTotalTicketAndService();
+  },
   mounted() {},
   updated() {},
   beforeDestroy() {},
@@ -191,14 +203,17 @@ export default {
     margin-top: 20px;
 
     div {
-      width: 90px;
-      height: 60px;
+      width: 100px;
+      height: 70px;
       padding: 10px;
+      background: url("../assets/img/img22.png") no-repeat center;
+      background-size: 100% 100%;
 
       span:first-child {
         font-size: 12px;
         color: #90b7ff;
         display: block;
+        margin-bottom: 8px;
       }
 
       span:last-child {
@@ -216,43 +231,43 @@ export default {
 
   > .title {
     position: absolute;
-    top: 10px;
-    left: 9px;
+    top: 8px;
+    left: 8px;
     color: #cff8ff;
     font-size: 20px;
-    background: #000;
+    background: url("../assets/img/img23.png") no-repeat center;
+    background-size: 100% 100%;
     height: 40px;
+    width: 180px;
     padding: 0 20px;
     line-height: 40px;
   }
 
   .l-wrapper {
     display: flex;
-    padding-top: 50px;
+    padding-top: 20px;
 
     .l-item {
+      width: 145px;
+      height: 165px;
       display: flex;
       flex-direction: column;
       margin: 0 20px;
+      padding-top: 30px;
       align-items: center;
+      background: url("../assets/img/img20.png") no-repeat center;
+      background-size: 100% 100%;
 
       img {
         height: 28px;
         width: auto;
-        margin-bottom: 5px;
-      }
-
-      .line {
-        width: 120px;
-        height: 2px;
-        background: #070820;
-        box-shadow: 0px 1px 0px 0px #0e1a49;
-        margin: 12px 0;
+        margin-bottom: 10px;
       }
 
       div {
         color: #fff;
         font-size: 20px;
+        margin-bottom: 14px;
       }
 
       span {

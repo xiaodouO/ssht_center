@@ -16,19 +16,19 @@ module.exports = {
   },
   pluginOptions: {},
 
-  // devServer: {
-  //   disableHostCheck: true,
-  //   proxy: {
-  //     '/v1': {
-  //       // target: 'http://10.0.9.81:8801/',
-  //       // target: 'http://10.0.6.199:8801/',
-  //       target: 'http://wiki2.dev.yingxiong.com/',
-  //       ws: true,
-  //       secure: false,
-  //       changeOrigin: true
-  //     }
-  //   }
-  // },
+  devServer: {
+    disableHostCheck: true,
+    proxy: {
+      "/api": {
+        // target: 'http://10.0.9.81:8801/',
+        // target: 'http://10.0.6.199:8801/',
+        target: "//223.112.126.90:8005/",
+        ws: true,
+        secure: false,
+        changeOrigin: true,
+      },
+    },
+  },
   publicPath: "/",
   outputDir: "dist",
   productionSourceMap: false,
