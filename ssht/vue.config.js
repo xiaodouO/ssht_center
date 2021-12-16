@@ -29,7 +29,7 @@ module.exports = {
       },
     },
   },
-  publicPath: "/",
+  publicPath: "/ssht_center/ssht/dist/",
   outputDir: "dist",
   productionSourceMap: false,
   lintOnSave: false,
