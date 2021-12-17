@@ -40,14 +40,14 @@
       <div class="title">版块业务量</div>
       <div class="l-wrapper">
         <div class="i-title">
-          <img src="../assets/img/img4.png" alt="" />
+          <img src="../assets/img/img21.png" alt="" />
           <span>办件汇总统计</span>
         </div>
         <div class="chart1" ref="chart1" />
       </div>
       <div class="r-wrapper">
         <div class="i-title">
-          <img src="../assets/img/img4.png" alt="" />
+          <img src="../assets/img/img21.png" alt="" />
           <span>当日办件汇总统计</span>
         </div>
         <div class="row-box">

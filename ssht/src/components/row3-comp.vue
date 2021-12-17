@@ -17,13 +17,14 @@
     </div>
     <div class="item3">
       <div class="title">审批事项</div>
-      <div class="c-item" v-for="item in 2" :key="item">
-        <div class="i-title">城管综治办</div>
-        <div class="text">
-          1、这里是文字内容，审批事项的内容是文字内容，审批事项！<br />
-          2、这里是内容文字内容，审批事项的内容是文字内容。<br />
-          3、这里是文字内容，审批事项的内容是文字内容，审批事项！<br />
-          4、这里是内容文字内容，审批事项的内容是文字内容。
+      <div class="scroll-box" ref="scrollBox">
+        <div class="c-item" v-for="(item, key) of itemsList" :key="key">
+          <div class="i-title">{{ key }}</div>
+          <div class="text">
+            <div v-for="(row, index) in item" :key="index">
+              {{ index + 1 }}.{{ row }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -46,6 +47,8 @@ export default {
       statsList: [],
       monthList: [],
       itemsList: [],
+      timer: null,
+      scrollTop: 0,
     };
   },
   computed: {},
@@ -194,12 +197,15 @@ export default {
         this.monthList = res.data;
         let data1 = [];
         let data2 = [];
-        this.monthList.forEach((item) => {
-          if (item.Name.includes("2020")) {
-            data1.push(item.Amount);
-          } else {
-            data2.push(item.Amount);
-          }
+        Object.keys(res.data).forEach((key, index) => {
+          let item = res.data[key];
+          item.forEach((item2) => {
+            if (index == 1) {
+              data2.push(item2.Amount);
+            } else {
+              data1.push(item2.Amount);
+            }
+          });
         });
         this.showChart(data1, data2);
       });
@@ -207,7 +213,24 @@ export default {
     getApprovalItemsList() {
       apiGetApprovalItemsList().then((res) => {
         this.itemsList = res.data;
+        this.$nextTick();
+        this.onScroll();
       });
+    },
+    onScroll() {
+      let { scrollBox } = this.$refs;
+      let boxH = scrollBox.clientHeight;
+      let isUp = false;
+      this.timer = setInterval(() => {
+        let scrollH = scrollBox.scrollHeight;
+        this.scrollTop += isUp ? 1 : -1;
+        if (boxH + this.scrollTop > scrollH || this.scrollTop < 0) {
+          isUp = !isUp;
+        }
+        scrollBox.scrollTo({
+          top: this.scrollTop,
+        });
+      }, 50);
     },
   },
   watch: {},
@@ -218,7 +241,9 @@ export default {
     this.getApprovalItemsList();
   },
   updated() {},
-  beforeDestroy() {},
+  beforeDestroy() {
+    clearInterval(this.timer);
+  },
   destroyed() {},
 };
 </script>
@@ -427,7 +452,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 120px;
+    height: auto;
     padding: 10px;
     border: 1px dashed #171a46;
     & + .c-item {
@@ -456,5 +481,9 @@ export default {
 .chart1 {
   width: 100%;
   height: 230px;
+}
+.scroll-box {
+  height: 100%;
+  overflow: hidden;
 }
 </style>
