@@ -85,7 +85,7 @@
         </div>
         <div class="r-item">
           <div class="r-t">
-            <img src="../assets/img/img8.png" alt="" />
+            <img src="../assets/img/img9.png" alt="" />
             窗口平均等待人数
           </div>
           <div class="line"></div>
@@ -93,7 +93,7 @@
         </div>
         <div class="r-item">
           <div class="r-t">
-            <img src="../assets/img/img9.png" alt="" />
+            <img src="../assets/img/img8.png" alt="" />
             24小时自助服务
           </div>
           <div class="line"></div>
@@ -138,6 +138,10 @@ export default {
   created() {
     this.getTotalTicketAndService();
     this.getRealtimeInfo();
+    setInterval(() => {
+      this.getTotalTicketAndService();
+      this.getRealtimeInfo();
+    }, 1000 * 60 * 2);
   },
   mounted() {},
   updated() {},
@@ -166,13 +170,17 @@ export default {
   .row1 {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 
     .r-item {
+      display: flex;
+      align-items: center;
       .title {
         font-style: italic;
         color: #cff8ff;
         font-size: 20px;
         margin-bottom: 10px;
+        margin-right: 20px;
       }
 
       .num-box {
@@ -212,21 +220,22 @@ export default {
     margin-top: 20px;
 
     div {
-      width: 100px;
-      height: 70px;
+      width: 120px;
+      height: 80px;
       padding: 10px;
       background: url("../assets/img/img22.png") no-repeat center;
       background-size: 100% 100%;
 
       span:first-child {
-        font-size: 12px;
+        font-size: 17px;
         color: #90b7ff;
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
+        margin-top: 3px;
       }
 
       span:last-child {
-        font-size: 16px;
+        font-size: 20px;
         color: #fff;
         text-align: center;
         display: block;

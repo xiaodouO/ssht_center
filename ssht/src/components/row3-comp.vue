@@ -236,9 +236,13 @@ export default {
   watch: {},
   created() {},
   mounted() {
-    this.getServiceStatsList();
     this.getMonthServiceStatsList();
+
+    this.getServiceStatsList();
     this.getApprovalItemsList();
+    setInterval(() => {
+      this.getServiceStatsList();
+    }, 1000 * 60 * 2);
   },
   updated() {},
   beforeDestroy() {
@@ -322,15 +326,15 @@ export default {
       }
       div {
         height: 24px;
-        font-size: 18px;
+        font-size: 17px;
         font-weight: bold;
         color: #fff;
-        padding-left: 10px;
-        width: 190px;
+        padding-left: 5px;
+        width: 220px;
       }
       span {
         font-weight: bold;
-        font-size: 32px;
+        font-size: 30px;
       }
     }
   }
@@ -450,8 +454,8 @@ export default {
   }
   .c-item {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    flex-direction: column;
     height: auto;
     padding: 10px;
     border: 1px dashed #171a46;
@@ -459,21 +463,23 @@ export default {
       margin-top: 12px;
     }
     .i-title {
-      height: 100px;
-      width: 40px;
-      background: url("../assets/img/img13.png") no-repeat center;
-      background-size: 100% 100%;
-      writing-mode: vertical-lr;
-      writing-mode: tb-lr;
+      height: 36px;
+      width: 120px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #1acad9;
-      font-size: 17px;
+      font-size: 16px;
+      position: relative;
+      text-align: center;
+      background: url("../assets/img/img13.png") no-repeat;
+      background-size: 100% 100%;
+      margin-bottom: 20px;
     }
     .text {
       width: calc(100% - 60px);
-      font-size: 14px;
+      font-size: 16px;
+      line-height: 1.8;
       color: #fff;
     }
   }

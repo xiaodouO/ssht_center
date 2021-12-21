@@ -25,12 +25,14 @@
         }}<br />
         星期{{ weeks[dateTime.getDay()] }}
       </span>
-      <span>9°C ~ 14°C</span>
+      <span>{{ weather.type }}&nbsp;&nbsp;{{ weather.tempRange }}</span>
     </div>
   </div>
 </template>
 
 <script>
+import { apiGetWeather } from "@/api/api";
+
 export default {
   name: "headerComp",
   props: {},
@@ -40,12 +42,21 @@ export default {
       dateTime: new Date(),
       weeks: ["日", "一", "二", "三", "四", "五", "六"],
       timer: null,
+      weather: {},
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    getWeather() {
+      apiGetWeather().then((res) => {
+        this.weather = res.data;
+      });
+    },
+  },
   watch: {},
-  created() {},
+  created() {
+    this.getWeather();
+  },
   mounted() {
     this.timer = setInterval(() => {
       this.dateTime = new Date();

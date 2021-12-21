@@ -56,3 +56,12 @@ export function apiGetApprovalItemsList(params) {
     params: params,
   });
 }
+
+// 获取天气
+export function apiGetWeather(params) {
+  return service({
+    url: "/api/v1/publicTool/getWeather",
+    method: "get",
+    params: params,
+  });
+}

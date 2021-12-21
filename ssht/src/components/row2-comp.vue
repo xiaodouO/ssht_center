@@ -15,26 +15,26 @@
           <div class="row color1">
             <img src="../assets/img/img4.png" alt="" />
             <span>满意</span>
-            <em>100%</em>
+            <em>0%</em>
           </div>
           <div class="row color2">
             <img src="../assets/img/img5.png" alt="" />
             <span>基本满意</span>
-            <em>100%</em>
+            <em>0%</em>
           </div>
           <div class="row color3">
             <img src="../assets/img/img6.png" alt="" />
             <span>不满意</span>
-            <em>100%</em>
+            <em>0%</em>
           </div>
           <div class="row color3">
             <img src="../assets/img/img6.png" alt="" />
             <span>非常不满意</span>
-            <em>100%</em>
+            <em>0%</em>
           </div>
         </div>
       </div>
-      <div class="text"><i></i> 本月评价条数<span>123</span>条</div>
+      <div class="text"><i></i> 本月评价条数<span>6661</span>条</div>
     </div>
     <div class="item2">
       <div class="title">版块业务量</div>
@@ -212,7 +212,7 @@ export default {
             },
             data: [
               {
-                value: 40,
+                value: 100,
                 textStyle: {
                   color: "#1ACAD9",
                 },
@@ -249,6 +249,10 @@ export default {
     this.showChart2();
     this.getDepartmentServiceAnalysisList();
     this.getDepartmentServiceStats();
+    setInterval(() => {
+      this.getDepartmentServiceAnalysisList();
+      this.getDepartmentServiceStats();
+    }, 1000 * 60 * 2);
   },
   updated() {},
   beforeDestroy() {},
@@ -295,11 +299,11 @@ export default {
     margin-top: 40px;
 
     .c-item1 {
-      width: 150px;
+      width: 140px;
     }
 
     .c-item2 {
-      width: 150px;
+      width: 160px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -338,7 +342,7 @@ export default {
         }
 
         span {
-          width: 100px;
+          width: 80px;
           height: 20px;
           display: flex;
           align-items: center;
@@ -482,7 +486,7 @@ export default {
   }
 
   .chart1 {
-    width: 250px;
+    width: 300px;
     height: 180px;
   }
 }
